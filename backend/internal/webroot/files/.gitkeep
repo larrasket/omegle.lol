@@ -1,0 +1,5 @@
+This directory is replaced with the SvelteKit build/ output during the
+Docker image build (see Dockerfile). The placeholder index.html below is
+what `go run ./cmd/server` serves locally if you haven't run `make build`.
+For real dev, use `make dev` which runs Vite on :5173 and proxies to the
+Go server on :8080 — the embed isn't exercised in that path.

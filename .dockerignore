@@ -1,0 +1,33 @@
+# Things that should never end up in the build context.
+backend/bin/
+backend/*.test
+backend/coverage.out
+backend/.golangci.yml
+
+# Frontend output dirs — Dockerfile builds these fresh inside the image.
+frontend/node_modules/
+frontend/.svelte-kit/
+frontend/build/
+frontend/test-results/
+frontend/playwright-report/
+
+# Repo metadata.
+.git/
+.gitignore
+.github/
+
+# Docs / deploy config / hooks (not part of the runtime).
+docs/
+deploy/
+lefthook.yml
+*.md
+
+# Editor / OS noise.
+.vscode/
+.idea/
+*.swp
+.DS_Store
+
+# Env files.
+.env
+.env.*

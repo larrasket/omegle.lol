@@ -1,0 +1,25 @@
+{
+	"extends": ["stylelint-config-standard", "stylelint-config-html/svelte"],
+	"plugins": ["stylelint-order"],
+	"rules": {
+		"order/properties-alphabetical-order": true,
+		"declaration-no-important": [true, { "severity": "warning" }],
+		"selector-class-pattern": "^[a-z][a-z0-9-]*$",
+		"selector-id-pattern": "^[a-z][a-z0-9-]*$",
+		"custom-property-pattern": "^[a-z][a-z0-9-]*$",
+		"keyframes-name-pattern": "^[a-z][a-z0-9-]*$",
+		"no-descending-specificity": true,
+		"no-duplicate-selectors": true,
+		"no-empty-source": true,
+		"color-no-invalid-hex": true,
+		"color-named": "never",
+		"color-hex-length": "short",
+		"length-zero-no-unit": true,
+		"unit-allowed-list": ["px", "%", "em", "rem", "ch", "dvh", "vw", "vh", "s", "ms", "deg", "fr"],
+		"property-no-vendor-prefix": true,
+		"value-no-vendor-prefix": true,
+		"no-unknown-animations": true
+	},
+	"overrides": [{ "files": ["**/*.svelte"], "customSyntax": "postcss-html" }],
+	"ignoreFiles": ["build/**", "node_modules/**", ".svelte-kit/**"]
+}

@@ -1,0 +1,22 @@
+# Go
+backend/bin/
+backend/*.test
+backend/coverage.out
+
+# Node
+frontend/node_modules/
+frontend/.svelte-kit/
+frontend/build/
+frontend/test-results/
+frontend/playwright-report/
+
+# Editor
+.vscode/
+.idea/
+*.swp
+.DS_Store
+
+# Env
+.env
+.env.local
+/node_modules/

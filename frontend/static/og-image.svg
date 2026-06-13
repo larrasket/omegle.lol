@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" shape-rendering="crispEdges">
+  <!-- Cream canvas matching site bg -->
+  <rect width="1200" height="630" fill="#fafaf7"/>
+
+  <!-- Two offset squares: same motif as the favicon, scaled up. Cyan + dark,
+       reading as "two strangers next to each other". -->
+  <rect x="92" y="92"  width="92" height="92" fill="#0891b2"/>
+  <rect x="166" y="138" width="92" height="92" fill="#1a1a1a"/>
+
+  <!-- Tiny heart in the top-right (matches the ♡ in the site topbar). -->
+  <text x="1110" y="138"
+    text-anchor="end"
+    font-family="Helvetica, Arial, sans-serif"
+    font-size="56"
+    fill="#0891b2"
+    opacity="0.7">♡</text>
+
+  <!-- Brand wordmark — same color as the topbar brand. -->
+  <text x="600" y="345"
+    text-anchor="middle"
+    font-family="Helvetica, Arial, sans-serif"
+    font-size="170"
+    font-weight="700"
+    fill="#0891b2"
+    letter-spacing="-6">omegle.lol</text>
+
+  <!-- Tagline -->
+  <text x="600" y="410"
+    text-anchor="middle"
+    font-family="Helvetica, Arial, sans-serif"
+    font-size="34"
+    fill="#1a1a1a">Anonymous one-to-one text chat.</text>
+
+  <!-- Sub-tagline / values, matching the Intro copy. -->
+  <text x="600" y="470"
+    text-anchor="middle"
+    font-family="Helvetica, Arial, sans-serif"
+    font-size="24"
+    fill="#737373">no ads · no paywalls · no nonsense</text>
+
+  <!-- Bottom underline accent stripe — mirrors the cyan accent border in the UI -->
+  <rect x="0" y="624" width="1200" height="6" fill="#0891b2"/>
+</svg>

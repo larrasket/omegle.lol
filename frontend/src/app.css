@@ -1,0 +1,227 @@
+*,
+*::before,
+*::after {
+	/* stylelint-disable-next-line declaration-no-important -- universal border-radius reset must override component defaults for the brutalist square-corner aesthetic */
+	border-radius: 0 !important;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+:root {
+	--accent: #0891b2;
+	--accent-soft: #06b6d4;
+	--accent-tint: #ecfeff;
+	--bg: #fafaf7;
+	--bg-card: #fff;
+	--border: 1px solid #d4d4d4;
+	--border-soft: 1px solid #e5e5e5;
+	--border-strong: 1px solid #262626;
+	--fg: #1a1a1a;
+	--font-mono: ui-monospace, 'SFMono-Regular', menlo, consolas, monospace;
+	--font-sans: -apple-system, blinkmacsystemfont, 'Segoe UI', helvetica, arial, sans-serif;
+	--muted: #737373;
+}
+
+html,
+body {
+	background: var(--bg);
+	color: var(--fg);
+	font-family: var(--font-sans);
+	font-size: 15px;
+	height: 100%;
+	line-height: 1.5;
+}
+
+body {
+	display: flex;
+	flex-direction: column;
+	min-height: 100dvh;
+}
+
+main {
+	display: flex;
+	flex: 1;
+	flex-direction: column;
+}
+
+button {
+	background: var(--accent);
+	border: 1px solid var(--accent);
+	color: #fff;
+	cursor: pointer;
+	font: inherit;
+	font-weight: 500;
+	letter-spacing: 0;
+	padding: 9px 22px;
+	text-transform: none;
+	transition: background 0.12s ease;
+}
+
+button:hover {
+	background: var(--accent-soft);
+	border-color: var(--accent-soft);
+}
+
+button:focus-visible {
+	outline: 2px solid var(--accent);
+	outline-offset: 2px;
+}
+
+button.outlined {
+	background: transparent;
+	border: var(--border);
+	color: var(--fg);
+}
+
+button.outlined:hover {
+	background: var(--accent-tint);
+	border-color: var(--accent);
+	color: var(--accent);
+}
+
+button:disabled {
+	background: var(--muted);
+	border-color: var(--muted);
+	color: #fff;
+	cursor: not-allowed;
+	opacity: 1;
+}
+
+input[type='text'],
+textarea {
+	background: var(--bg-card);
+	border: var(--border);
+	color: var(--fg);
+	font: inherit;
+	padding: 9px 12px;
+	width: 100%;
+}
+
+input[type='text']:focus-visible,
+textarea:focus-visible {
+	border-color: var(--accent);
+	outline: none;
+}
+
+a {
+	color: var(--accent);
+	text-decoration: underline;
+	text-underline-offset: 2px;
+}
+
+a:hover {
+	color: var(--accent-soft);
+}
+
+h1,
+h2,
+h3 {
+	font-weight: 600;
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+}
+
+h1 {
+	font-size: clamp(22px, 3.5vw, 32px);
+}
+
+.mono {
+	font-family: var(--font-mono);
+}
+
+.divider {
+	border-top: var(--border);
+}
+
+/* Text-based cycling dots ("." → ".." → "..." → repeat). Used everywhere we
+   want to signal in-progress activity: searching, connecting, peer typing.
+   Fixed inline-block width prevents layout shift while dot count changes. */
+@keyframes dots-cycle {
+	0%,
+	33% {
+		content: '.';
+	}
+
+	33.01%,
+	66% {
+		content: '..';
+	}
+
+	66.01%,
+	100% {
+		content: '...';
+	}
+}
+
+.dots {
+	color: var(--accent);
+	display: inline-block;
+	min-width: 1.4em;
+	text-align: left;
+}
+
+.dots::after {
+	animation: dots-cycle 1.4s steps(1, end) infinite;
+	content: '.';
+}
+
+/* Snappy taps + no iOS grey flash. */
+/* stylelint-disable-next-line property-no-vendor-prefix -- no standard equivalent; iOS-only behavior */
+* {
+	-webkit-tap-highlight-color: transparent;
+}
+
+/* stylelint-disable no-descending-specificity -- touch-action/user-select resets intentionally follow pseudo-class variants */
+button,
+input,
+textarea,
+a {
+	touch-action: manipulation;
+}
+
+/* User-select discipline: chrome is not selectable, content is. Message
+   content opts back in via its own component style. */
+button,
+header,
+footer,
+.topbar,
+.action-row,
+.confirm-banner,
+.status,
+.searching-row {
+	user-select: none;
+}
+/* stylelint-enable no-descending-specificity */
+
+/* iOS Safari auto-zooms inputs with computed font-size < 16px.
+   Bumping these on touch devices keeps desktop 15px body intact. */
+@media (hover: none) and (pointer: coarse) {
+	input[type='text'],
+	textarea,
+	select {
+		font-size: 16px;
+	}
+}
+
+/* Tap-target floor for touch users (Apple HIG 44pt, Material 48dp). */
+@media (hover: none) and (pointer: coarse) {
+	button {
+		min-height: 44px;
+	}
+}
+
+/* Respect motion preference. */
+@media (prefers-reduced-motion: reduce) {
+	.dots::after {
+		animation: none;
+		content: '...';
+	}
+
+	/* stylelint-disable declaration-no-important -- accessibility override must beat component-scoped transitions */
+	* {
+		scroll-behavior: auto !important;
+		transition: none !important;
+	}
+	/* stylelint-enable declaration-no-important */
+}

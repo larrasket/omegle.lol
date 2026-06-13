@@ -1,0 +1,35 @@
+pre-commit:
+  parallel: true
+  commands:
+    backend-lint:
+      glob: "backend/**/*.go"
+      # Run on full package set (not {staged_files}) because golangci-lint
+      # linters like `unused` and `staticcheck` need whole-package context.
+      run: cd backend && golangci-lint run --fix ./...
+      stage_fixed: true
+    backend-vet:
+      glob: "backend/**/*.go"
+      run: cd backend && go vet ./...
+    frontend-eslint:
+      root: "frontend/"
+      glob: "*.{ts,svelte,js}"
+      run: npx eslint --max-warnings 0 --fix {staged_files}
+      stage_fixed: true
+    frontend-stylelint:
+      root: "frontend/"
+      glob: "*.{css,svelte}"
+      run: npx stylelint --max-warnings 0 --fix {staged_files}
+      stage_fixed: true
+    frontend-prettier:
+      root: "frontend/"
+      glob: "*.{ts,svelte,js,json,css,md}"
+      run: npx prettier --check {staged_files}
+
+pre-push:
+  commands:
+    backend-test:
+      run: cd backend && go test ./... -race -count=1
+    frontend-test:
+      run: cd frontend && npm test -- --run
+    full-lint:
+      run: make lint
